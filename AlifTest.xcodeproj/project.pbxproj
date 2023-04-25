@@ -14,6 +14,7 @@
 		450A11BD29F879570050845C /* AlifTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 450A11BB29F879570050845C /* AlifTest.xcdatamodeld */; };
 		450A11BF29F879600050845C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450A11BE29F879600050845C /* Assets.xcassets */; };
 		450A11C229F879600050845C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450A11C029F879600050845C /* LaunchScreen.storyboard */; };
+		450A11E429F87AA80050845C /* TestNumberOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11E329F87AA80050845C /* TestNumberOne.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		450A11BE29F879600050845C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		450A11C129F879600050845C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		450A11C329F879600050845C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		450A11E329F87AA80050845C /* TestNumberOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNumberOne.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				450A11B229F879570050845C /* AppDelegate.swift */,
 				450A11B429F879570050845C /* SceneDelegate.swift */,
+				450A11E329F87AA80050845C /* TestNumberOne.swift */,
 				450A11B629F879570050845C /* ViewController.swift */,
 				450A11B829F879570050845C /* Main.storyboard */,
 				450A11BE29F879600050845C /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				450A11B729F879570050845C /* ViewController.swift in Sources */,
+				450A11E429F87AA80050845C /* TestNumberOne.swift in Sources */,
 				450A11BD29F879570050845C /* AlifTest.xcdatamodeld in Sources */,
 				450A11B329F879570050845C /* AppDelegate.swift in Sources */,
 				450A11B529F879570050845C /* SceneDelegate.swift in Sources */,
