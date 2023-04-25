@@ -27,6 +27,7 @@
 		450A11F929F887510050845C /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11F829F887510050845C /* AppFactory.swift */; };
 		450A11FB29F889E40050845C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11FA29F889E40050845C /* LoginViewController.swift */; };
 		450A11FD29F88A440050845C /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11FC29F88A440050845C /* Color+String.swift */; };
+		450A120429F892840050845C /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A120329F892840050845C /* TaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		450A11F829F887510050845C /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		450A11FA29F889E40050845C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		450A11FC29F88A440050845C /* Color+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
+		450A120329F892840050845C /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +117,8 @@
 		450A11FE29F88A5A0050845C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				450A11B629F879570050845C /* SigninViewController.swift */,
-				450A11E729F884D80050845C /* SigninView.swift */,
-				450A11E929F8850D0050845C /* SigninViewModel.swift */,
-				450A11FA29F889E40050845C /* LoginViewController.swift */,
+				450A120129F88FF50050845C /* SignIn Login */,
+				450A120229F892680050845C /* Task */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -139,6 +139,25 @@
 				450A11F429F8866A0050845C /* Coordinatable.swift */,
 			);
 			path = Module;
+			sourceTree = "<group>";
+		};
+		450A120129F88FF50050845C /* SignIn Login */ = {
+			isa = PBXGroup;
+			children = (
+				450A11B629F879570050845C /* SigninViewController.swift */,
+				450A11E729F884D80050845C /* SigninView.swift */,
+				450A11E929F8850D0050845C /* SigninViewModel.swift */,
+				450A11FA29F889E40050845C /* LoginViewController.swift */,
+			);
+			path = "SignIn Login";
+			sourceTree = "<group>";
+		};
+		450A120229F892680050845C /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				450A120329F892840050845C /* TaskViewController.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +248,7 @@
 				450A11F729F8868C0050845C /* Module.swift in Sources */,
 				450A11B329F879570050845C /* AppDelegate.swift in Sources */,
 				450A11B529F879570050845C /* SceneDelegate.swift in Sources */,
+				450A120429F892840050845C /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
