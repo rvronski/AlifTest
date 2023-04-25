@@ -9,25 +9,49 @@
 /* Begin PBXBuildFile section */
 		450A11B329F879570050845C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11B229F879570050845C /* AppDelegate.swift */; };
 		450A11B529F879570050845C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11B429F879570050845C /* SceneDelegate.swift */; };
-		450A11B729F879570050845C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11B629F879570050845C /* ViewController.swift */; };
+		450A11B729F879570050845C /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11B629F879570050845C /* SigninViewController.swift */; };
 		450A11BA29F879570050845C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450A11B829F879570050845C /* Main.storyboard */; };
 		450A11BD29F879570050845C /* AlifTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 450A11BB29F879570050845C /* AlifTest.xcdatamodeld */; };
 		450A11BF29F879600050845C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450A11BE29F879600050845C /* Assets.xcassets */; };
 		450A11C229F879600050845C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450A11C029F879600050845C /* LaunchScreen.storyboard */; };
 		450A11E429F87AA80050845C /* TestNumberOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11E329F87AA80050845C /* TestNumberOne.swift */; };
+		450A11E629F883AE0050845C /* CoreDataMeneger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11E529F883AE0050845C /* CoreDataMeneger.swift */; };
+		450A11E829F884D80050845C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11E729F884D80050845C /* SigninView.swift */; };
+		450A11EA29F8850D0050845C /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11E929F8850D0050845C /* SigninViewModel.swift */; };
+		450A11EC29F885540050845C /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11EB29F885540050845C /* UIViewController+Alert.swift */; };
+		450A11EE29F8857E0050845C /* Labels+TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11ED29F8857E0050845C /* Labels+TextFields.swift */; };
+		450A11F129F885EB0050845C /* Buttons+ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11F029F885EB0050845C /* Buttons+ImageView.swift */; };
+		450A11F329F8864B0050845C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11F229F8864B0050845C /* AppCoordinator.swift */; };
+		450A11F529F8866A0050845C /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11F429F8866A0050845C /* Coordinatable.swift */; };
+		450A11F729F8868C0050845C /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11F629F8868C0050845C /* Module.swift */; };
+		450A11F929F887510050845C /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11F829F887510050845C /* AppFactory.swift */; };
+		450A11FB29F889E40050845C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11FA29F889E40050845C /* LoginViewController.swift */; };
+		450A11FD29F88A440050845C /* Color+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A11FC29F88A440050845C /* Color+String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		450A11AF29F879560050845C /* AlifTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlifTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		450A11B229F879570050845C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		450A11B429F879570050845C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		450A11B629F879570050845C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		450A11B629F879570050845C /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		450A11B929F879570050845C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		450A11BC29F879570050845C /* AlifTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlifTest.xcdatamodel; sourceTree = "<group>"; };
 		450A11BE29F879600050845C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		450A11C129F879600050845C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		450A11C329F879600050845C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		450A11E329F87AA80050845C /* TestNumberOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNumberOne.swift; sourceTree = "<group>"; };
+		450A11E529F883AE0050845C /* CoreDataMeneger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMeneger.swift; sourceTree = "<group>"; };
+		450A11E729F884D80050845C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		450A11E929F8850D0050845C /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
+		450A11EB29F885540050845C /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		450A11ED29F8857E0050845C /* Labels+TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Labels+TextFields.swift"; sourceTree = "<group>"; };
+		450A11F029F885EB0050845C /* Buttons+ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Buttons+ImageView.swift"; sourceTree = "<group>"; };
+		450A11F229F8864B0050845C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		450A11F429F8866A0050845C /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		450A11F629F8868C0050845C /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		450A11F829F887510050845C /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
+		450A11FA29F889E40050845C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		450A11FC29F88A440050845C /* Color+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,14 +87,58 @@
 				450A11B229F879570050845C /* AppDelegate.swift */,
 				450A11B429F879570050845C /* SceneDelegate.swift */,
 				450A11E329F87AA80050845C /* TestNumberOne.swift */,
-				450A11B629F879570050845C /* ViewController.swift */,
+				450A11FE29F88A5A0050845C /* Screens */,
+				450A11FF29F88A7B0050845C /* App */,
+				450A120029F88A920050845C /* Module */,
+				450A11EF29F885880050845C /* Extensions */,
 				450A11B829F879570050845C /* Main.storyboard */,
 				450A11BE29F879600050845C /* Assets.xcassets */,
 				450A11C029F879600050845C /* LaunchScreen.storyboard */,
 				450A11C329F879600050845C /* Info.plist */,
 				450A11BB29F879570050845C /* AlifTest.xcdatamodeld */,
+				450A11E529F883AE0050845C /* CoreDataMeneger.swift */,
 			);
 			path = AlifTest;
+			sourceTree = "<group>";
+		};
+		450A11EF29F885880050845C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				450A11EB29F885540050845C /* UIViewController+Alert.swift */,
+				450A11ED29F8857E0050845C /* Labels+TextFields.swift */,
+				450A11F029F885EB0050845C /* Buttons+ImageView.swift */,
+				450A11FC29F88A440050845C /* Color+String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		450A11FE29F88A5A0050845C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				450A11B629F879570050845C /* SigninViewController.swift */,
+				450A11E729F884D80050845C /* SigninView.swift */,
+				450A11E929F8850D0050845C /* SigninViewModel.swift */,
+				450A11FA29F889E40050845C /* LoginViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		450A11FF29F88A7B0050845C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				450A11F829F887510050845C /* AppFactory.swift */,
+				450A11F229F8864B0050845C /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		450A120029F88A920050845C /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				450A11F629F8868C0050845C /* Module.swift */,
+				450A11F429F8866A0050845C /* Coordinatable.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,9 +212,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				450A11B729F879570050845C /* ViewController.swift in Sources */,
+				450A11F329F8864B0050845C /* AppCoordinator.swift in Sources */,
+				450A11EC29F885540050845C /* UIViewController+Alert.swift in Sources */,
+				450A11B729F879570050845C /* SigninViewController.swift in Sources */,
+				450A11EE29F8857E0050845C /* Labels+TextFields.swift in Sources */,
+				450A11FD29F88A440050845C /* Color+String.swift in Sources */,
 				450A11E429F87AA80050845C /* TestNumberOne.swift in Sources */,
+				450A11E829F884D80050845C /* SigninView.swift in Sources */,
+				450A11E629F883AE0050845C /* CoreDataMeneger.swift in Sources */,
+				450A11F529F8866A0050845C /* Coordinatable.swift in Sources */,
+				450A11EA29F8850D0050845C /* SigninViewModel.swift in Sources */,
+				450A11F929F887510050845C /* AppFactory.swift in Sources */,
 				450A11BD29F879570050845C /* AlifTest.xcdatamodeld in Sources */,
+				450A11F129F885EB0050845C /* Buttons+ImageView.swift in Sources */,
+				450A11FB29F889E40050845C /* LoginViewController.swift in Sources */,
+				450A11F729F8868C0050845C /* Module.swift in Sources */,
 				450A11B329F879570050845C /* AppDelegate.swift in Sources */,
 				450A11B529F879570050845C /* SceneDelegate.swift in Sources */,
 			);
@@ -300,7 +380,7 @@
 				INFOPLIST_FILE = AlifTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -328,7 +408,7 @@
 				INFOPLIST_FILE = AlifTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
