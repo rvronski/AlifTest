@@ -11,8 +11,8 @@ protocol CoreDataManagerProtocol: AnyObject {
     func createUser(email: String, name: String, password: String, completion: @escaping (Bool) -> Void)
     func chekUser(email: String, context: NSManagedObjectContext) -> User?
     func getUser(email: String, completion: (((User)?) -> Void))
-    func task() -> [Task]
-    func createTask(deadline: Date, executor: String, taskName: String)
+    func task(user: User) -> [Task]
+    func createTask(deadline: Date, executor: String, taskName: String, user: User)
     func isCompleted(taskName: String, completion: @escaping () -> Void)
     func cancelDone(taskName: String, completion: @escaping () -> Void)
     func changeTask(taskName: String, deadline: Date, executor: String, newTaskName: String)
@@ -59,18 +59,20 @@ class CoreDataManager: CoreDataManagerProtocol {
                     print(error)
                     completion(false)
                 }
+                UserDefaults.standard.set(email, forKey: "email")
                 completion(true)
             }
             
         }
     }
 
-    func createTask(deadline: Date, executor: String, taskName: String) {
+    func createTask(deadline: Date, executor: String, taskName: String, user: User) {
         let task = Task(context: persistentContainer.viewContext)
         task.isCompleted = false
         task.taskName = taskName
         task.deadline = deadline
         task.executor = executor
+        user.addToTasks(task)
         saveContext()
     }
     
@@ -93,8 +95,9 @@ class CoreDataManager: CoreDataManagerProtocol {
             completion(nil)
         }
     }
-    func task() -> [Task] {
+    func task(user: User) -> [Task] {
       let request: NSFetchRequest<Task> = Task.fetchRequest()
+      request.predicate = NSPredicate(format: "user = %@", user)
       var fetchedTasks: [Task] = []
       do {
           fetchedTasks = try persistentContainer.viewContext.fetch(request)

@@ -16,7 +16,7 @@ protocol SigninViewModelProtocol: ViewModelProtocol {
 }
 
 class SigninViewModel: SigninViewModelProtocol {
-   
+    
     enum State {
         case initial
         case succsess
@@ -43,14 +43,10 @@ class SigninViewModel: SigninViewModelProtocol {
     
     func signInButtonDidTap(email: String, name: String, password: String) {
         coreDataManager.createUser(email: email, name: name, password: password) { [weak self] result in
-            switch result {
-            case true:
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if result {
                     self?.goToTabBar()
-                    print("true")
-                }
-            case false:
-                DispatchQueue.main.async {
+                } else {
                     self?.state = .fail
                 }
             }
@@ -62,16 +58,16 @@ class SigninViewModel: SigninViewModelProtocol {
             guard let user else { self?.state = .userNotFound
                 return
             }
-            if user.password == password {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if user.password == password {
+                    UserDefaults.standard.set(email, forKey: "email")
                     self?.goToTabBar()
+                } else {
+                    self?.state = .wrongPassword
                 }
-            } else {
-                self?.state = .wrongPassword
             }
         }
     }
-    
     
     func goToTabBar(){
         coordinator.goTo(viewModel: self, pushTo: .tabBar)

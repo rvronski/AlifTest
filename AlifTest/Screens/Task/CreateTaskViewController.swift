@@ -11,9 +11,10 @@ class CreateTaskViewController: UIViewController {
     
     
     var viewModel: TaskViewModelProtocol
-    
-    init(viewModel: TaskViewModelProtocol) {
+    var user: User
+    init(viewModel: TaskViewModelProtocol, user: User) {
         self.viewModel = viewModel
+        self.user = user
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -116,7 +117,7 @@ class CreateTaskViewController: UIViewController {
         let deadline = datePicker.date
         let executor = executorTextField.text ?? ""
         
-        viewModel.createTask(deadline: deadline, executor: executor, taskName: taskName)
+        viewModel.createTask(deadline: deadline, executor: executor, taskName: taskName, user: user)
         popVC()
     }
     

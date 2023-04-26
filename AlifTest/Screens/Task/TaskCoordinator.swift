@@ -10,7 +10,7 @@ import UIKit
 class TaskCoordinator: ModuleCoordinatable {
     
     enum Push {
-        case createTask(ViewModelProtocol)
+        case createTask(ViewModelProtocol, User)
         case edit(ViewModelProtocol, Task)
     }
     
@@ -37,8 +37,8 @@ class TaskCoordinator: ModuleCoordinatable {
     
     func goTo(viewModel: ViewModelProtocol, pushTo: Push) {
         switch pushTo {
-        case let .createTask(viewModel):
-            let viewControllerToPush = CreateTaskViewController(viewModel: viewModel as! TaskViewModelProtocol)
+        case let .createTask(viewModel, user):
+            let viewControllerToPush = CreateTaskViewController(viewModel: viewModel as! TaskViewModelProtocol, user: user)
             (module!.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
             
         case let .edit(viewModel, task):

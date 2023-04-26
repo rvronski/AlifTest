@@ -19,6 +19,8 @@ class TaskViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    let email = UserDefaults.standard.string(forKey: "email")
+    var user: User?
     
     private lazy var taskView: TaskView = {
         let view = TaskView()
@@ -34,11 +36,17 @@ class TaskViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         taskView.configureCollectionView(dataSource: self, delegate: self)
+        guard let email else { return }
+        viewModel.getUser(email: email) { user in
+            guard let user else {return}
+            self.user = user
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.taskArray = viewModel.getTaskArray()
+        guard let user else { return }
+        self.taskArray = viewModel.getTaskArray(user: user)
         taskView.taskCollectionView.reloadData()
     }
     private func setupNavigationBar() {
@@ -52,7 +60,8 @@ class TaskViewController: UIViewController {
     }
  
     @objc func pushCreateVC() {
-        viewModel.pushCreateTask()
+        guard let user else {return}
+        viewModel.pushCreateTask(user: user)
     }
 
 }
@@ -99,7 +108,8 @@ extension TaskViewController: TaskCollectionCellDelegate {
         self.alertOkCancel(title: "Отменить выполнение?", message: nil) { [weak self] in
             self?.viewModel.cancelDone(taskName: taskName) {
                 DispatchQueue.main.async {
-                    self?.taskArray = (self?.viewModel.getTaskArray())!
+                    guard let user = self?.user else { return }
+                    self?.taskArray = (self?.viewModel.getTaskArray(user: user))!
                     self?.taskView.taskCollectionView.reloadData()
                 }
             }
@@ -109,7 +119,8 @@ extension TaskViewController: TaskCollectionCellDelegate {
     func isCompleted(taskName: String) {
         viewModel.isCompleted(taskName: taskName) { [weak self] in
             DispatchQueue.main.async {
-                self?.taskArray = (self?.viewModel.getTaskArray())!
+                guard let user = self?.user else { return }
+                self?.taskArray = (self?.viewModel.getTaskArray(user: user))!
                 self?.taskView.taskCollectionView.reloadData()
             }
         }

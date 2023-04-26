@@ -19,7 +19,7 @@ class SigninViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    let email = UserDefaults.standard.string(forKey: "email")
     private lazy var signView: SigninView = {
         let view = SigninView()
         view.delegate = self
