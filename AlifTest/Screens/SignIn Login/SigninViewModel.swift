@@ -9,14 +9,14 @@ import UIKit
 
 protocol SigninViewModelProtocol: ViewModelProtocol {
     var onStateDidChange: ((SigninViewModel.State) -> Void)? { get set }
-//    func goToTabBar()
+    //    func goToTabBar()
     func goToLogin()
     func signInButtonDidTap(email: String, name: String, password: String)
-    func loginButtonDidTap(name: String, password: String)
+    func loginButtonDidTap(email: String, password: String)
 }
 
 class SigninViewModel: SigninViewModelProtocol {
-
+    
     enum State {
         case initial
         case succsess
@@ -33,10 +33,10 @@ class SigninViewModel: SigninViewModelProtocol {
         }
     }
     
-     var coordinator: AppCoordinator!
+    var coordinator: AppCoordinator!
     
     private let coreDataManager: CoreDataManagerProtocol
-
+    
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
     }
@@ -46,7 +46,7 @@ class SigninViewModel: SigninViewModelProtocol {
             switch result {
             case true:
                 DispatchQueue.main.async {
-//                    self?.goToTabBar()
+                    //                    self?.goToTabBar()
                     print("true")
                 }
             case false:
@@ -57,15 +57,14 @@ class SigninViewModel: SigninViewModelProtocol {
         }
     }
     
-    func loginButtonDidTap(name: String, password: String) {
-        coreDataManager.getUser(name: name) { [weak self] user in
+    func loginButtonDidTap(email: String, password: String) {
+        coreDataManager.getUser(email: email) { [weak self] user in
             guard let user else { self?.state = .userNotFound
                 return
             }
             if user.email == password {
                 DispatchQueue.main.async {
-                    //                    self?.goToTabBar()
-                                        print("true")
+                    self?.goToTabBar()
                 }
             } else {
                 self?.state = .wrongPassword
@@ -74,9 +73,9 @@ class SigninViewModel: SigninViewModelProtocol {
     }
     
     
-//    func goToTabBar(){
-//        coordinator.goTo(viewModel: self, pushTo: .tabBar)
-//    }
+    func goToTabBar(){
+        coordinator.goTo(viewModel: self, pushTo: .tabBar)
+    }
     
     func goToLogin() {
         coordinator.goTo(viewModel: self, pushTo: .loginVC(self))

@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     private lazy var welcomeLabel = InfoLabels(inform: "Welcome back", size: 30, weight: .bold, color: .black)
     
-    private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default, isSecureText: false)
+    private lazy var emailTextField = regTextField(placeholderText: "Email", typeKeyBoard: .default, isSecureText: false)
     
     private lazy var passwordTextField = UIShowHideTextField()
     
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
         stackView.spacing = 35
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(self.firstNameTextField)
+        stackView.addArrangedSubview(self.emailTextField)
         stackView.addArrangedSubview(self.passwordTextField)
         return stackView
     }()
@@ -49,12 +49,16 @@ class LoginViewController: UIViewController {
         bindViewModel()
         setupGesture()
         regButton.tapButton = { [weak self] in
-            guard let firstName = self?.firstNameTextField.text, !firstName.isEmpty,
+            guard let email = self?.emailTextField.text, !email.isEmpty,
                   let password = self?.passwordTextField.text, !password.isEmpty else {
                 self?.alertOk(title: "Заполните все поля", message: nil)
                 return
             }
-            self?.viewModel.loginButtonDidTap(name: firstName, password: password)
+            guard email.isValidEmail else {
+                self?.alertOk(title: "Неверный формат email", message: "Проверьте email адрес")
+                return
+            }
+            self?.viewModel.loginButtonDidTap(email: email, password: password)
         }
         signInButton.tapButton = { [weak self] in
             self?.navigationController?.popViewController(animated: true)

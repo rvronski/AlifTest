@@ -27,12 +27,14 @@ class AppFactory {
             let viewModel = SigninViewModel(coreDataManager: coreDataManager)
             let view = LoginViewController(viewModel: viewModel)
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
-//        case .task:
-//            print("initial")
-//            let viewModel = PageOneViewModel(networkManager: networkManager)
-//            let view = UINavigationController(rootViewController: PageOneViewController(viewModel: viewModel))
-//            return Module(moduleType: moduleType, viewModel: viewModel, view: view)
-        
+        case .task:
+            let viewModel = TaskViewModel(coreDataManager: coreDataManager)
+            let view = UINavigationController(rootViewController: TaskViewController(viewModel: viewModel))
+            return Module(moduleType: moduleType, viewModel: viewModel, view: view)
+        case .settings:
+            let viewModel = SettingsViewModel()
+            let view = UINavigationController(rootViewController: SettingsViewController(viewModel: viewModel))
+            return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         }
     }
 }

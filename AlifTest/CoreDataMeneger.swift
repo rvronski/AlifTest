@@ -9,8 +9,8 @@ import CoreData
 
 protocol CoreDataManagerProtocol: AnyObject {
     func createUser(email: String, name: String, password: String, completion: @escaping (Bool) -> Void)
-    func chekUser(name: String, context: NSManagedObjectContext) -> User?
-    func getUser(name: String, completion: (((User)?) -> Void))
+    func chekUser(email: String, context: NSManagedObjectContext) -> User?
+    func getUser(email: String, completion: (((User)?) -> Void))
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -40,7 +40,7 @@ class CoreDataManager: CoreDataManagerProtocol {
 
     func createUser(email: String, name: String, password: String, completion: @escaping (Bool) -> Void) {
         persistentContainer.performBackgroundTask { backgroundContext in
-            if self.chekUser(name: name, context: backgroundContext) != nil {
+            if self.chekUser(email: email, context: backgroundContext) != nil {
                 completion(false)
             } else {
                 let user = User(context: backgroundContext)
@@ -59,16 +59,16 @@ class CoreDataManager: CoreDataManagerProtocol {
         }
     }
 
-    func chekUser(name: String, context: NSManagedObjectContext) -> User?  {
+    func chekUser(email: String, context: NSManagedObjectContext) -> User?  {
         let fetchRequest = User.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
        return (try? context.fetch(fetchRequest))?.first
     
     }
     
-    func getUser(name: String, completion: (((User)?) -> Void) ) {
+    func getUser(email: String, completion: (((User)?) -> Void) ) {
         let fetchRequest = User.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
         do {
              let user = try persistentContainer.viewContext.fetch(fetchRequest).first
             completion(user)

@@ -10,7 +10,7 @@ import UIKit
 final class AppCoordinator: Coordinatable {
     enum PushVC {
         case loginVC(ViewModelProtocol)
-        case task
+        case tabBar
     }
     private let coreDataManager: CoreDataManagerProtocol
     private(set) var coordinators: [Coordinatable] = []
@@ -37,9 +37,17 @@ final class AppCoordinator: Coordinatable {
         case let .loginVC(viewModel):
             let viewControllerToPush = LoginViewController(viewModel: viewModel as! SigninViewModelProtocol)
             (module!.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
-        case .task:
-            print("initial")
-            
+        case .tabBar:
+            let taskCoordinator = TaskCoordinator(moduleType: .task, factory: factory, navigationController: UINavigationController())
+            let settingsCoordinator = SettingsCoordinator(moduleType: .settings, factory: factory, navigationController: UINavigationController())
+            let taskVC = taskCoordinator.start()
+            let setVC = settingsCoordinator.start()
+           
+            let tabBarController = AppTabBarController(viewControllers: [taskVC, setVC])
+            addCoordinator(coordinator: taskCoordinator)
+            addCoordinator(coordinator: settingsCoordinator)
+           
+            (module!.view as? UINavigationController)?.pushViewController(tabBarController, animated: true)
         }
     }
    
