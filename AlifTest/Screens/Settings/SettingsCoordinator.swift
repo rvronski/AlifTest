@@ -24,6 +24,13 @@ class SettingsCoordinator: ModuleCoordinatable {
         let module = factory.makeModule(ofType: .settings)
         let viewController = module.view
         viewController.tabBarItem = moduleType.tabBarItem
+        (module.viewModel as? SettingsViewModel)?.coordinator = self
+        self.module = module
         return viewController
     }
+    
+    func popToLogin() {
+        module?.view.navigationController?.popToRootViewController(animated: true)
+    }
+    
 }

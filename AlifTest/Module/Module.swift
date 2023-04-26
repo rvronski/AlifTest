@@ -31,9 +31,9 @@ extension Module.ModuleType {
         case .login:
             fallthrough
         case .task:
-            return UITabBarItem(title: nil,image: UIImage(systemName: "rectangle.grid.1x2.fill"), tag: 0)
+            return UITabBarItem(title: "Задачи",image: UIImage(systemName: "rectangle.grid.1x2.fill"), tag: 0)
         case .settings:
-            return UITabBarItem(title: nil,image: UIImage(systemName: "hammer"), tag: 1)
+            return UITabBarItem(title: "Настройки" ,image: UIImage(systemName: "hammer"), tag: 1)
        
         }
     }

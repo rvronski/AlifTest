@@ -16,7 +16,7 @@ protocol SigninViewModelProtocol: ViewModelProtocol {
 }
 
 class SigninViewModel: SigninViewModelProtocol {
-    
+   
     enum State {
         case initial
         case succsess
@@ -46,7 +46,7 @@ class SigninViewModel: SigninViewModelProtocol {
             switch result {
             case true:
                 DispatchQueue.main.async {
-                 self?.goToTabBar()
+                    self?.goToTabBar()
                     print("true")
                 }
             case false:

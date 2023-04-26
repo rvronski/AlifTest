@@ -12,6 +12,11 @@ protocol CoreDataManagerProtocol: AnyObject {
     func chekUser(email: String, context: NSManagedObjectContext) -> User?
     func getUser(email: String, completion: (((User)?) -> Void))
     func task() -> [Task]
+    func createTask(deadline: Date, executor: String, taskName: String)
+    func isCompleted(taskName: String, completion: @escaping () -> Void)
+    func cancelDone(taskName: String, completion: @escaping () -> Void)
+    func changeTask(taskName: String, deadline: Date, executor: String, newTaskName: String)
+    func deleteTask(task: Task)
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -60,6 +65,16 @@ class CoreDataManager: CoreDataManagerProtocol {
         }
     }
 
+    func createTask(deadline: Date, executor: String, taskName: String) {
+        let task = Task(context: persistentContainer.viewContext)
+        task.isCompleted = false
+        task.taskName = taskName
+        task.deadline = deadline
+        task.executor = executor
+        saveContext()
+    }
+    
+    
     func chekUser(email: String, context: NSManagedObjectContext) -> User?  {
         let fetchRequest = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "email == %@", email)
@@ -88,4 +103,54 @@ class CoreDataManager: CoreDataManagerProtocol {
       }
       return fetchedTasks
     }
+    
+    func isCompleted(taskName: String, completion: @escaping () -> Void) {
+        let fetchRequest = Task.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "taskName == %@", taskName)
+        do {
+            let task = try persistentContainer.viewContext.fetch(fetchRequest).first
+            task?.isCompleted = true
+            saveContext()
+        }
+        catch {
+            print(error)
+        }
+        completion()
+    }
+    
+    func cancelDone(taskName: String, completion: @escaping () -> Void) {
+        let fetchRequest = Task.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "taskName == %@", taskName)
+        do {
+            let task = try persistentContainer.viewContext.fetch(fetchRequest).first
+            task?.isCompleted = false
+            saveContext()
+        }
+        catch {
+            print(error)
+        }
+        completion()
+    }
+    
+    
+    func changeTask(taskName: String, deadline: Date, executor: String, newTaskName: String) {
+        let fetchRequest = Task.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "taskName == %@", taskName)
+        do {
+            let task = try persistentContainer.viewContext.fetch(fetchRequest).first
+            task?.deadline = deadline
+            task?.taskName = newTaskName
+            task?.executor = executor
+            saveContext()
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    func deleteTask(task: Task) {
+        persistentContainer.viewContext.delete(task)
+        saveContext()
+    }
+    
 }

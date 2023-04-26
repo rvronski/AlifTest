@@ -9,6 +9,11 @@ import UIKit
 
 class TaskCoordinator: ModuleCoordinatable {
     
+    enum Push {
+        case createTask(ViewModelProtocol)
+        case edit(ViewModelProtocol, Task)
+    }
+    
     var module: Module?
     private let factory: AppFactory
     private(set) var moduleType: Module.ModuleType
@@ -25,6 +30,22 @@ class TaskCoordinator: ModuleCoordinatable {
         let module = factory.makeModule(ofType: .task)
         let viewController = module.view
         viewController.tabBarItem = moduleType.tabBarItem
+        (module.viewModel as? TaskViewModel)?.coordinator = self
+        self.module = module
         return viewController
     }
+    
+    func goTo(viewModel: ViewModelProtocol, pushTo: Push) {
+        switch pushTo {
+        case let .createTask(viewModel):
+            let viewControllerToPush = CreateTaskViewController(viewModel: viewModel as! TaskViewModelProtocol)
+            (module!.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
+            
+        case let .edit(viewModel, task):
+             let viewControllerToPush = EditViewController(viewModel: viewModel as! TaskViewModelProtocol, task: task)
+            (module!.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
+            
+        }
+    }
+    
 }

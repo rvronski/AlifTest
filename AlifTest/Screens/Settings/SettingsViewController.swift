@@ -20,21 +20,27 @@ class SettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private lazy var outButton = CustomButton(buttonText: "Выйти", textColor: .white, background: .buttonColor, fontSize: 15, fontWeight: .regular)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        outButton.tapButton = { [weak self] in
+            self?.alertOkCancel(title: "Выйти из профиля?", message: nil) {
+                self?.viewModel.returnToLogin()
+            }
+        }
+    }
+    private func setupView() {
+        self.view.addSubview(outButton)
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        NSLayoutConstraint.activate([
+        
+            outButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            outButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20),
+            outButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
+            outButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

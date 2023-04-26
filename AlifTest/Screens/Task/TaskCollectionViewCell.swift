@@ -7,19 +7,28 @@
 
 import UIKit
 
+protocol TaskCollectionCellDelegate: AnyObject {
+    func isCompleted(taskName: String)
+    func cancelDone(taskName: String)
+}
+
 class TaskCollectionViewCell: UICollectionViewCell {
     
     static let indentifire = "TaskItem" 
+    var delegate: TaskCollectionCellDelegate?
     
-    var indexPath: IndexPath?
+    var isCompleted: Bool?
+    
     lazy var taskLabel = InfoLabels(inform: "", size: 17, weight: .semibold, color: .black)
-    lazy var dateLabel = InfoLabels(inform: "", size: 12, weight: .regular, color: .systemGray2)
+    lazy var dateLabel = InfoLabels(inform: "", size: 15, weight: .regular, color: .black)
     lazy var executorLabel = InfoLabels(inform: "", size: 13, weight: .semibold, color: .systemGray)
-    lazy var circleImage = CustomSystemImageView(systemName: "", color: .white)
+    lazy var circleImage = CustomSystemImageView(systemName: "circle", color: .buttonColor)
+    
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.timeStyle = .short
+        formatter.dateStyle = .short
         return formatter
     }()
     
@@ -37,18 +46,13 @@ class TaskCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //var delegate: HabitsCollectionViewCellDelegate?.
-    
     
     func setup(with viewModel: Task) {
        
         self.taskLabel.text = viewModel.taskName
-        self.taskLabel.textColor = UIColor.color(data: viewModel.color!)
-        self.dateLabel.text = "Каждый день в " + dateFormatter.string(from: viewModel.deadline!) //(viewModel.deadline)
+        self.dateLabel.text = "Выполнить к " + dateFormatter.string(from: viewModel.deadline!)
         self.executorLabel.text = "Исполнитель: \(viewModel.executor ?? "")"
-        self.circleImage.tintColor = UIColor.color(data: viewModel.color!)
-        let color = UIColor.blue
-//        let data = Data
+        
     }
     func addGesture() {
         let circleGesture = UITapGestureRecognizer(target: self, action: #selector(circleTap))
@@ -56,9 +60,14 @@ class TaskCollectionViewCell: UICollectionViewCell {
     }
     @objc func circleTap() {
         print("pushCircle")
-//        self.delegate?.tapCircle(cell: self)
+        let taskName = self.taskLabel.text
+        guard let isCompleted else { return }
         
-        
+        if isCompleted {
+            self.delegate?.cancelDone(taskName: taskName ?? "")
+        } else {
+            self.delegate?.isCompleted(taskName: taskName ?? "")
+        }
     }
     
     private func setupView() {

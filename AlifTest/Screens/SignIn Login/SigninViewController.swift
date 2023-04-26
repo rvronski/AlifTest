@@ -52,8 +52,7 @@ class SigninViewController: UIViewController {
                print("initial")
             case .succsess:
                 DispatchQueue.main.async {
-//                    self.viewModel.goToTabBar()
-                    print("initial")
+                    self.viewModel.goToTabBar()
                 }
             case .fail:
                     self.alertOk(title: "Что-то пошло не так", message: "Возможно такой пользователь уже зарегестрирован")

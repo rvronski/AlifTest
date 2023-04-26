@@ -8,9 +8,14 @@
 import Foundation
 
 protocol SettingsViewModelProtocol: ViewModelProtocol {
-    
+    func returnToLogin()
 }
 
 class SettingsViewModel: SettingsViewModelProtocol {
     
+    var coordinator: SettingsCoordinator!
+    
+    func returnToLogin() {
+        coordinator.popToLogin()
+    }
 }

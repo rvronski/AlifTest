@@ -34,96 +34,86 @@ class TaskViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         taskView.configureCollectionView(dataSource: self, delegate: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.taskArray = viewModel.getTaskArray()
-        print(UIColor.white.description)
+        taskView.taskCollectionView.reloadData()
     }
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Задачи"
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentHabitVC))
-        button.tintColor = .blue
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushCreateVC))
+        button.tintColor = .buttonColor
         navigationItem.rightBarButtonItem = button
 
     }
  
-    @objc func presentHabitVC() {
-        print("button did push")
+    @objc func pushCreateVC() {
+        viewModel.pushCreateTask()
     }
 
 }
-extension TaskViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource { //HabitsCollectionViewCellDelegate {
-   
+extension TaskViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
   
-//   func tapCircle(cell: HabitsCollectionViewCell) {
-//       let vc = HabitViewController()
-//       let collection = self.habitsCollectionView
-//       guard let index = collection.indexPath(for:cell )?.row else {return}
-//       let hab = HabitsStore.shared.habits[index]
-//       if hab.isAlreadyTakenToday == false {
-//           HabitsStore.shared.track(hab)
-//           self.habitsCollectionView.reloadData()
-////            vc.restartApplication()
-//       
-//       }
-////        self.habitsCollectionView.reloadData()
-//   }
-   
-   func numberOfSections(in collectionView: UICollectionView) -> Int {
-       1
-   }
-   
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//       if section == 0 {
-//          return 1
-//       }  else if section > 0 {
-//      return HabitsStore.shared.habits.count
-//       }
        return taskArray.count
    }
    
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//       if indexPath.section == 0 {
-//           let cell0 = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath) as! ProgressCollectionViewCell
-//               return cell0
-//       }
-//       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitsCell", for: indexPath) as? HabitsCollectionViewCell else {
-//           let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "DefoultCell", for: indexPath)
-//           return cell
-//       }
-//       cell.setup(with: HabitsStore.shared.habits[indexPath.row])
-//       cell.delegate = self
-//       if HabitsStore.shared.habits[indexPath.row].isAlreadyTakenToday == false {
-//           cell.circleImage.image = UIImage(systemName: "circle")
-//       } else {
-//           cell.circleImage.image = UIImage(systemName: "checkmark.circle.fill")}
-//
-//       return cell
-       
+      
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskCollectionViewCell.indentifire, for: indexPath) as! TaskCollectionViewCell
        cell.setup(with: taskArray[indexPath.row])
-       
+       cell.delegate = self
+       if taskArray[indexPath.row].isCompleted {
+           cell.circleImage.image = UIImage(systemName: "checkmark.circle.fill")
+           cell.isCompleted = true
+       } else {
+           cell.circleImage.image = UIImage(systemName: "circle")
+           cell.isCompleted = false
+       }
        return cell
    }
-       
-   
+    
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       if indexPath.section == 0 {
-           let width = collectionView.frame.width - 33
-           let height = width * 0.17492711
-           return CGSize(width: width, height: height)
-       }
+
        let itemWidth = collectionView.frame.width - 33
        let itemHeight = itemWidth * 0.37900875
        
        return CGSize(width: itemWidth, height: itemHeight)
    }
    
-//   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//       if indexPath.section != 0 {
-//           let controller = HabitDetailsViewController(habit: HabitsStore.shared.habits[indexPath.item])
-//           controller.navigationItem.title = HabitsStore.shared.habits[indexPath.item].name
-//           self.navigationController?.pushViewController(controller, animated: true)
-//       }
-//
+   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       collectionView.deselectItem(at: indexPath, animated: true)
+       let task = taskArray[indexPath.row]
+       viewModel.goToEdit(task: task)
+       }
    }
+
+extension TaskViewController: TaskCollectionCellDelegate {
+    
+    func cancelDone(taskName: String) {
+        self.alertOkCancel(title: "Отменить выполнение?", message: nil) { [weak self] in
+            self?.viewModel.cancelDone(taskName: taskName) {
+                DispatchQueue.main.async {
+                    self?.taskArray = (self?.viewModel.getTaskArray())!
+                    self?.taskView.taskCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func isCompleted(taskName: String) {
+        viewModel.isCompleted(taskName: taskName) { [weak self] in
+            DispatchQueue.main.async {
+                self?.taskArray = (self?.viewModel.getTaskArray())!
+                self?.taskView.taskCollectionView.reloadData()
+            }
+        }
+    }
+    
+    
+}

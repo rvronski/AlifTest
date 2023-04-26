@@ -36,6 +36,8 @@
 		450A121129F8A0AF0050845C /* TaskCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A121029F8A0AF0050845C /* TaskCoordinator.swift */; };
 		450A121329F932F30050845C /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A121229F932F30050845C /* TaskView.swift */; };
 		450A121529F934720050845C /* TaskCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450A121429F934710050845C /* TaskCollectionViewCell.swift */; };
+		45C9BFC829F95E1A0067323B /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C9BFC729F95E1A0067323B /* CreateTaskViewController.swift */; };
+		45C9BFCB29F977780067323B /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C9BFCA29F977780067323B /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		450A121029F8A0AF0050845C /* TaskCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCoordinator.swift; sourceTree = "<group>"; };
 		450A121229F932F30050845C /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		450A121429F934710050845C /* TaskCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionViewCell.swift; sourceTree = "<group>"; };
+		45C9BFC729F95E1A0067323B /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		45C9BFCA29F977780067323B /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 				450A11B229F879570050845C /* AppDelegate.swift */,
 				450A11B429F879570050845C /* SceneDelegate.swift */,
 				450A11E329F87AA80050845C /* TestNumberOne.swift */,
+				45C9BFCC29F994950067323B /* CoreData */,
 				450A11FE29F88A5A0050845C /* Screens */,
 				450A11FF29F88A7B0050845C /* App */,
 				450A120029F88A920050845C /* Module */,
@@ -113,8 +118,6 @@
 				450A11BE29F879600050845C /* Assets.xcassets */,
 				450A11C029F879600050845C /* LaunchScreen.storyboard */,
 				450A11C329F879600050845C /* Info.plist */,
-				450A11BB29F879570050845C /* AlifTest.xcdatamodeld */,
-				450A11E529F883AE0050845C /* CoreDataMeneger.swift */,
 			);
 			path = AlifTest;
 			sourceTree = "<group>";
@@ -133,10 +136,11 @@
 		450A11FE29F88A5A0050845C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				450A120529F89D0E0050845C /* TabBar.swift */,
 				450A120129F88FF50050845C /* SignIn Login */,
 				450A120229F892680050845C /* Task */,
+				45C9BFC929F977550067323B /* Edit */,
 				450A120929F89F3B0050845C /* Settings */,
-				450A120529F89D0E0050845C /* TabBar.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -175,6 +179,7 @@
 			children = (
 				450A120329F892840050845C /* TaskViewController.swift */,
 				450A121429F934710050845C /* TaskCollectionViewCell.swift */,
+				45C9BFC729F95E1A0067323B /* CreateTaskViewController.swift */,
 				450A121229F932F30050845C /* TaskView.swift */,
 				450A120729F89E880050845C /* TaskViewModel.swift */,
 				450A121029F8A0AF0050845C /* TaskCoordinator.swift */,
@@ -190,6 +195,23 @@
 				450A120E29F8A09E0050845C /* SettingsCoordinator.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		45C9BFC929F977550067323B /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				45C9BFCA29F977780067323B /* EditViewController.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		45C9BFCC29F994950067323B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				450A11E529F883AE0050845C /* CoreDataMeneger.swift */,
+				450A11BB29F879570050845C /* AlifTest.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,11 +299,13 @@
 				450A11E829F884D80050845C /* SigninView.swift in Sources */,
 				450A11E629F883AE0050845C /* CoreDataMeneger.swift in Sources */,
 				450A11F529F8866A0050845C /* Coordinatable.swift in Sources */,
+				45C9BFC829F95E1A0067323B /* CreateTaskViewController.swift in Sources */,
 				450A120F29F8A09E0050845C /* SettingsCoordinator.swift in Sources */,
 				450A11EA29F8850D0050845C /* SigninViewModel.swift in Sources */,
 				450A11F929F887510050845C /* AppFactory.swift in Sources */,
 				450A11BD29F879570050845C /* AlifTest.xcdatamodeld in Sources */,
 				450A120829F89E880050845C /* TaskViewModel.swift in Sources */,
+				45C9BFCB29F977780067323B /* EditViewController.swift in Sources */,
 				450A11F129F885EB0050845C /* Buttons+ImageView.swift in Sources */,
 				450A11FB29F889E40050845C /* LoginViewController.swift in Sources */,
 				450A11F729F8868C0050845C /* Module.swift in Sources */,

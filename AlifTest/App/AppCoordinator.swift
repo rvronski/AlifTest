@@ -8,10 +8,12 @@
 import UIKit
 
 final class AppCoordinator: Coordinatable {
+    
     enum PushVC {
         case loginVC(ViewModelProtocol)
         case tabBar
     }
+    
     private let coreDataManager: CoreDataManagerProtocol
     private(set) var coordinators: [Coordinatable] = []
     private(set) var module: Module?
