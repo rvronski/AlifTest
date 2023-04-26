@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TaskViewModelProtocol: ViewModelProtocol {
-    
+   func getTaskArray() -> [Task]
 }
 
 class TaskViewModel: TaskViewModelProtocol {
@@ -17,5 +17,10 @@ class TaskViewModel: TaskViewModelProtocol {
     
     init(coreDataManager: CoreDataManagerProtocol) {
         self.coreDataManager = coreDataManager
+    }
+    
+    func getTaskArray() -> [Task] {
+        let array = coreDataManager.task()
+        return array
     }
 }

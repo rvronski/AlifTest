@@ -52,6 +52,7 @@ class CustomSystemImageView: UIImageView {
         clipsToBounds = true
         image = UIImage(systemName: systemName)
         tintColor = color
+        isUserInteractionEnabled = true
         
         
     }

@@ -9,7 +9,7 @@ import UIKit
 
 protocol SigninViewModelProtocol: ViewModelProtocol {
     var onStateDidChange: ((SigninViewModel.State) -> Void)? { get set }
-    //    func goToTabBar()
+    func goToTabBar()
     func goToLogin()
     func signInButtonDidTap(email: String, name: String, password: String)
     func loginButtonDidTap(email: String, password: String)
@@ -46,7 +46,7 @@ class SigninViewModel: SigninViewModelProtocol {
             switch result {
             case true:
                 DispatchQueue.main.async {
-                    //                    self?.goToTabBar()
+                 self?.goToTabBar()
                     print("true")
                 }
             case false:
@@ -62,7 +62,7 @@ class SigninViewModel: SigninViewModelProtocol {
             guard let user else { self?.state = .userNotFound
                 return
             }
-            if user.email == password {
+            if user.password == password {
                 DispatchQueue.main.async {
                     self?.goToTabBar()
                 }

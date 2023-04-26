@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SigninViewDelegate: AnyObject {
-    func signButtonDidTap(email: String, firstName: String, lastName: String)
+    func signButtonDidTap(email: String, name: String, password: String)
     func loginButtonDidTap()
     func showAlert()
     func showEmailAlert()
@@ -20,11 +20,11 @@ class SigninView: UIView {
     
     private lazy var signInLabel = InfoLabels(inform: "Sign in", size: 30, weight: .bold, color: .black)
     
-    private lazy var firstNameTextField = regTextField(placeholderText: "First name", typeKeyBoard: .default, isSecureText: false)
+    private lazy var nameTextField = regTextField(placeholderText: "Name", typeKeyBoard: .default, isSecureText: false)
 
-    private lazy var lastNameTextField = regTextField(placeholderText: "Last name", typeKeyBoard: .default, isSecureText: false)
-    
     private lazy var emailTextField = regTextField(placeholderText: "Email", typeKeyBoard: .emailAddress, isSecureText: false)
+    
+    private lazy var passwordTextField = UIShowHideTextField()
     
     private lazy var informLabel = InfoLabels(inform: "Already have an account?", size: 12, weight: .light, color: .gray)
     
@@ -46,9 +46,9 @@ class SigninView: UIView {
         stackView.spacing = 35
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(self.firstNameTextField)
-        stackView.addArrangedSubview(self.lastNameTextField)
+        stackView.addArrangedSubview(self.nameTextField)
         stackView.addArrangedSubview(self.emailTextField)
+        stackView.addArrangedSubview(self.passwordTextField)
         return stackView
     }()
     
@@ -56,9 +56,9 @@ class SigninView: UIView {
         super.init(frame: frame)
         self.setupView()
         enterButton.tapButton = { [weak self] in
-            guard let email = self?.emailTextField.text, !email.isEmpty,
-                  let firstName = self?.firstNameTextField.text, !firstName.isEmpty,
-                  let lastName = self?.lastNameTextField.text, !lastName.isEmpty else {
+            guard  let name = self?.nameTextField.text, !name.isEmpty,
+                   let email = self?.emailTextField.text, !email.isEmpty,
+                   let password = self?.passwordTextField.text, !password.isEmpty else {
                 self?.delegate?.showAlert()
                 return
             }
@@ -66,7 +66,7 @@ class SigninView: UIView {
                 self?.delegate?.showEmailAlert()
                 return
             }
-            self?.delegate?.signButtonDidTap(email: email, firstName: firstName, lastName: lastName)
+            self?.delegate?.signButtonDidTap(email: email, name: name, password: password)
         }
         
         loginButton.tapButton = { [weak self] in
@@ -100,7 +100,7 @@ class SigninView: UIView {
             self.stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.stackView.topAnchor.constraint(equalTo: self.signInLabel.bottomAnchor,constant: 77),
             self.stackView.widthAnchor.constraint(equalTo: self.widthAnchor,multiplier: 0.786),
-            self.firstNameTextField.heightAnchor.constraint(equalTo: self.stackView.widthAnchor, multiplier: 0.14),
+            self.nameTextField.heightAnchor.constraint(equalTo: self.stackView.widthAnchor, multiplier: 0.14),
             
             self.enterButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 35),
             self.enterButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),

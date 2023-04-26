@@ -11,6 +11,7 @@ protocol CoreDataManagerProtocol: AnyObject {
     func createUser(email: String, name: String, password: String, completion: @escaping (Bool) -> Void)
     func chekUser(email: String, context: NSManagedObjectContext) -> User?
     func getUser(email: String, completion: (((User)?) -> Void))
+    func task() -> [Task]
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -77,5 +78,14 @@ class CoreDataManager: CoreDataManagerProtocol {
             completion(nil)
         }
     }
-    
+    func task() -> [Task] {
+      let request: NSFetchRequest<Task> = Task.fetchRequest()
+      var fetchedTasks: [Task] = []
+      do {
+          fetchedTasks = try persistentContainer.viewContext.fetch(request)
+      } catch let error {
+         print("Error fetching singers \(error)")
+      }
+      return fetchedTasks
+    }
 }

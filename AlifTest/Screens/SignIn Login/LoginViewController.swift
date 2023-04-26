@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     private lazy var welcomeLabel = InfoLabels(inform: "Welcome back", size: 30, weight: .bold, color: .black)
     
-    private lazy var emailTextField = regTextField(placeholderText: "Email", typeKeyBoard: .default, isSecureText: false)
+    private lazy var emailTextField = regTextField(placeholderText: "Email", typeKeyBoard: .emailAddress, isSecureText: false)
     
     private lazy var passwordTextField = UIShowHideTextField()
     

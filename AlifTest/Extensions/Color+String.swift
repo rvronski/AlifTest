@@ -12,6 +12,14 @@ extension UIColor {
     static var backgroundColor: UIColor = #colorLiteral(red: 0.9803897738, green: 0.9764357209, blue: 1, alpha: 1)
     static var earlGrey: UIColor = #colorLiteral(red: 0.9098039269, green: 0.9098039269, blue: 0.9098039269, alpha: 1)
     static var eyes: UIColor = #colorLiteral(red: 0.3607842922, green: 0.3607842922, blue: 0.3607842922, alpha: 1)
+    
+   class func color(data: Data) -> UIColor? {
+        return try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? UIColor
+    }
+    
+    func encode() -> Data? {
+        return try? NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false)
+    }
 }
 
 extension String {

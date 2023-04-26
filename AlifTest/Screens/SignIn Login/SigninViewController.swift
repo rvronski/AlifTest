@@ -76,8 +76,8 @@ class SigninViewController: UIViewController {
     
 }
 extension SigninViewController: SigninViewDelegate {
-    func signButtonDidTap(email: String, firstName: String, lastName: String) {
-        viewModel.signInButtonDidTap(email: email, name: firstName, password: lastName)
+    func signButtonDidTap(email: String, name: String, password: String) {
+        viewModel.signInButtonDidTap(email: email, name: name, password: password)
     }
     
     func loginButtonDidTap() {
